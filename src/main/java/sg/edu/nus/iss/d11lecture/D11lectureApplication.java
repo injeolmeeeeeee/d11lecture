@@ -6,6 +6,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.DefaultApplicationArguments;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 @SpringBootApplication
 public class D11lectureApplication {
@@ -29,6 +31,14 @@ public class D11lectureApplication {
 		app.run(args);
 
 		System.out.println("my first SpringBoot application started");
+	}
+
+	@Bean
+	public CommonsRequestLoggingFilter log() {
+		CommonsRequestLoggingFilter logger = new CommonsRequestLoggingFilter();
+		logger.setIncludeClientInfo(true);
+		logger.setIncludeQueryString(true);
+		return logger;
 	}
 
 }
